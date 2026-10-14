@@ -126,6 +126,7 @@
   .act.m-math:hover:before{background:linear-gradient(225deg,#F0ECFE 50%,transparent 50%);}
   .act.m-zhuyin:hover:before{background:linear-gradient(225deg,#FDEBF8 50%,transparent 50%);}
   .act.m-chinese:hover:before{background:linear-gradient(225deg,#ECF3FE 50%,transparent 50%);}
+  .act.m-brain:hover:before{background:linear-gradient(225deg,#EAFBF3 50%,transparent 50%);}
   /* 課堂卡：更轻的次要处理 */
   .act.m-chinese{border-style:dashed;background:#FEFBFF;}
 
@@ -214,8 +215,8 @@
       <span class="en">Olivia's Learning World</span>
     </div>
     <div class="tb-right">
-      已收錄 <b>3</b> 個學習網站<br>
-      3 learning sites inside
+      已收錄 <b>4</b> 個學習網站<br>
+      4 learning sites inside
     </div>
   </div>
 
@@ -374,6 +375,50 @@
       </div>
       <div class="act-foot">
         <div class="cta">進入單元一<span class="en">Enter</span></div>
+      </div>
+    </a>
+
+    <!-- 記憶加工島（Brain Island） -->
+    <a class="act m-brain rise" href="https://teacherqq.github.io/brain-island/" target="_blank" rel="noopener">
+      <div class="act-top">
+        <div class="act-icon">
+          <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="記憶加工">
+            <ellipse cx="48" cy="52" rx="35" ry="32" fill="#C9EFDD" opacity=".6" filter="url(#washRough)"/>
+            <ellipse cx="54" cy="46" rx="30" ry="27" fill="#7FD4AE" opacity=".22" filter="url(#washSoft)"/>
+            <path d="M36 30 C 26 30, 22 38, 25 44 C 19 47, 20 56, 27 58 C 26 65, 33 70, 40 67
+                     C 44 72, 55 72, 59 67 C 66 70, 73 65, 71 58 C 78 56, 79 47, 73 44
+                     C 76 38, 71 30, 62 30 C 58 25, 42 25, 36 30 Z"
+                  fill="#FFFCFE" stroke="#8A78A8" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M48 31 L48 68" stroke="#8A78A8" stroke-width="1.4" opacity=".65"/>
+            <path d="M39 38 C 44 40, 44 44.5, 39 46.5" stroke="#B9A9D6" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <path d="M57 38 C 52 40, 52 44.5, 57 46.5" stroke="#B9A9D6" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <path d="M39 53 C 44 55, 44 59.5, 39 61.5" stroke="#B9A9D6" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <path d="M57 53 C 52 55, 52 59.5, 57 61.5" stroke="#B9A9D6" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <path d="M74 22 l1.7 4.2 4.2 1.7 -4.2 1.7 -1.7 4.2 -1.7 -4.2 -4.2 -1.7 4.2 -1.7 z" fill="#7FCFAA" opacity=".9"/>
+            <circle cx="21" cy="24" r="2.4" fill="#7FCFAA" opacity=".55"/>
+            <circle cx="30" cy="78" r="1.9" fill="#7FCFAA" opacity=".45"/>
+          </svg>
+        </div>
+        <div>
+          <span class="chip">大 腦</span>
+          <h3>記憶加工島
+            <span class="en">Brain Island · Memory &amp; Focus</span>
+          </h3>
+        </div>
+      </div>
+      <div class="act-desc">
+        十七個小遊戲，練習工作記憶與自我控制：野餐清單、數字廣度、格子記憶、Simon Says、規則切換、Snap！中英雙語，可聽讀題目，過關賺星星換貼紙。
+        <span class="en">Seventeen mini-games for working memory and self-control — picnic list, digit span, glowing grids, Simon Says, rule switching and Snap! Bilingual, with spoken prompts and star rewards.</span>
+      </div>
+      <div class="tags">
+        <span class="tag">🧠 17 個遊戲</span>
+        <span class="tag">🎯 專注力</span>
+        <span class="tag">🟦 記憶廣度</span>
+        <span class="tag">🌟 星星貼紙</span>
+      </div>
+      <div class="act-foot">
+        <div class="prog" id="brainProg"></div>
+        <div class="cta">進入記憶島<span class="en">Enter</span></div>
       </div>
     </a>
 
@@ -621,7 +666,9 @@ const SITES = {
   zhuyin:  { name:'注音符號學習網站', url:'https://teacherqq.github.io/zhuyin-bopomofo/',
              zh:'複習幾個符號的發音和兒歌口訣吧。', en:'Review a few bopomofo sounds and rhymes.' },
   chinese: { name:'單元一學習重點', url:'https://teacherqq.github.io/grade3-chinese-unit1/',
-             zh:'看看田字格的筆畫動畫，練一練詞語。', en:'Watch stroke animations and practise the words.' }
+             zh:'看看田字格的筆畫動畫，練一練詞語。', en:'Watch stroke animations and practise the words.' },
+  brain:   { name:'記憶加工島', url:'https://teacherqq.github.io/brain-island/',
+             zh:'玩兩個小遊戲，練練記憶和專注力吧。', en:'Play a couple of games to train memory and focus.' }
 };
 
 /* =========================================================
@@ -633,6 +680,15 @@ function mathProgress(){
     if(!d) return null;
     const stars = Object.values(d.stars || {}).reduce((a, b) => a + b, 0);
     return { day: d.day || 1, stars: stars, stickers: (d.stickers || []).length };
+  }catch(e){ return null; }
+}
+
+/* 記憶加工島進度（同一個 github.io 網域，可直接讀取） */
+function brainProgress(){
+  try{
+    const d = JSON.parse(localStorage.getItem('brainIsland_v4'));
+    if(!d) return null;
+    return { stars: d.stars || 0, stickers: (d.stickers || []).length };
   }catch(e){ return null; }
 }
 
@@ -660,15 +716,20 @@ function renderHero(){
     `${g[0]}<span class="en">${g[1]}</span>`;
 
   const p = mathProgress();
+  const b = brainProgress();
   const bubble = document.getElementById('heroBubble');
   if(p && p.day > 1){
     bubble.innerHTML =
-      `上次你闖到第 ${p.day} 天啦，今天要不要繼續？另外兩個網站也等著你。` +
-      `<span class="en">Last time you reached Day ${p.day} — shall we carry on? The other two sites are waiting as well.</span>`;
+      `上次你闖到第 ${p.day} 天啦，今天要不要繼續？其他網站也等著你。` +
+      `<span class="en">Last time you reached Day ${p.day} — shall we carry on? The other sites are waiting as well.</span>`;
   }else if(p && p.stickers > 0){
     bubble.innerHTML =
       `你已經收集了 ${p.stickers} 張貼紙。繼續加油，三十張都在等你。` +
       `<span class="en">You have collected ${p.stickers} stickers. Thirty of them are waiting for you.</span>`;
+  }else if(b && b.stars > 0){
+    bubble.innerHTML =
+      `你在記憶加工島賺了 ${b.stars} 顆星。要不要再去挑戰一局？` +
+      `<span class="en">You have earned ${b.stars} stars on Brain Island. Up for another round?</span>`;
   }else{
     bubble.innerHTML =
       '我是獨角獸露娜。這裡收著所有為你準備的學習網站，挑一個開始吧。' +
@@ -676,7 +737,7 @@ function renderHero(){
   }
 
   const stats = document.getElementById('heroStats');
-  const items = ['<div class="stat">📚 三個學習網站</div>'];
+  const items = ['<div class="stat">📚 四個學習網站</div>'];
   if(p){
     items.push(`<div class="stat">🗺️ 第 <b>${p.day > 30 ? 30 : p.day}</b> 天</div>`);
     items.push(`<div class="stat">⭐ <b>${p.stars}</b> 顆星</div>`);
@@ -695,20 +756,34 @@ function renderHero(){
   }else{
     mp.innerHTML = '<span>🌱 還沒開始，今天就是第 1 天</span>';
   }
+
+  const bp = document.getElementById('brainProg');
+  if(bp){
+    if(b){
+      bp.innerHTML =
+        `<span>⭐ ${b.stars} 顆星</span>` +
+        `<span>🎁 ${b.stickers} / 6 個貼紙</span>`;
+    }else{
+      bp.innerHTML = '<span>🌱 還沒開始，挑一個遊戲試試看</span>';
+    }
+  }
 }
 
 /* =========================================================
    今日推荐（按日期轮流，稳定不变）
 ========================================================= */
 function renderRec(){
-  const order = ['math', 'zhuyin'];
+  const order = ['math', 'zhuyin', 'brain'];
   const key = order[new Date().getDate() % order.length];
   const s = SITES[key];
   const p = mathProgress();
+  const b = brainProgress();
 
   let main = `${s.name} — ${s.zh}`;
   if(key === 'math' && p){
     main = `乘除法冒險島 — 挑戰第 ${p.day > 30 ? 30 : p.day} 天`;
+  }else if(key === 'brain' && b && b.stars > 0){
+    main = `記憶加工島 — 用 ${b.stars} 顆星再換一局`;
   }
   document.getElementById('recBody').innerHTML =
     main + `<span class="en">${s.en}</span>`;
